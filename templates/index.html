@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Text to Image Generator</title>
+</head>
+<body>
+    <h1>Text to Image</h1>
+    <form method="POST">
+        <label for="user_text">Enter your text:</label><br>
+        <textarea name="user_text" id="user_text" rows="10" cols="50">{{ text }}</textarea><br><br>
+        
+        <label for="background_color">Background color:</label><br>
+        <input type="color" id="background_color" name="background_color" value="{{ background_color }}"><br><br>
+
+        <label for="font_color">Font color:</label><br>
+        <input type="color" id="font_color" name="font_color" value="{{ font_color }}"><br><br>
+
+        <input type="submit" value="Generate Image">
+    </form>
+    {% if img_data %}
+        <img src="data:image/jpeg;base64,{{ img_data }}"><br>
+        <a href="/download_image?text={{ text }}&background_color={{ background_color }}&font_color={{ font_color }}">Download Image</a>
+    {% endif %}
+</body>
+</html>
